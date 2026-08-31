@@ -5,7 +5,7 @@ import Eventspage from './Pages/Eventspage'
 import NotFoundPage from './Pages/NotFoundPage'
 function App() {
     return (
-        <div className='bg-pulseWhite h-dvh pt-3 px-3'>
+        <div className='bg-pulseWhite min-h-screen m-0'>
             <Routes>
                 <Route index element={<Homepage/>}/>
                 <Route path="about" element={<Aboutpage/>}/>

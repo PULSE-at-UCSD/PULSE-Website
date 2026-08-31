@@ -1,1 +1,8 @@
-@import "tailwindcss"
+@import "tailwindcss";
+
+@theme {
+    --color-pulseWhite: #FFF1C2;
+    --color-pulseYellow: #F8DF38;
+    --color-pulseOrange: #FB7200;
+    --color-pulseBlue: #395A91;
+}

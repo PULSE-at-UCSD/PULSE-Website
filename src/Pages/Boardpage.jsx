@@ -6,6 +6,7 @@ export default function Boardpage() {
             <NavBar/>
             <div  className="flex-1">
                 Board members!
+                <img src="src/Assets/misc/boardLayoutPrototype.svg"></img>
             </div>
             <Footer/>
         </div>

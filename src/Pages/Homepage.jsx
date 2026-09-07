@@ -4,7 +4,7 @@ import Footer from "../Components/Footer";
 
 export default function Homepage() {
     return(
-        <div>
+        <div className="flex flex-col min-h-screen">
 
             <NavBar/>
 

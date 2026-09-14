@@ -6,20 +6,17 @@ export default function OurMissionpage() {
     const [rotation, setRotation] = useState(0);
     const [pillarIndex, setPillarIndex] = useState(0);
     const pillars = [
+        "src/Assets/pillars-desc/Engagement.svg",
+        "src/Assets/pillars-desc/Learning.svg",
         "src/Assets/pillars-desc/Professionalism.svg",
-        "src/Assets/pillars-desc/Professionalism.svg",
-        "src/Assets/pillars-desc/Professionalism.svg",
-        "src/Assets/pillars-desc/Professionalism.svg",
-        "src/Assets/pillars-desc/Professionalism.svg",
-        "src/Assets/pillars-desc/Professionalism.svg",
-        "src/Assets/pillars-desc/Professionalism.svg",
-        "src/Assets/pillars-desc/Professionalism.svg"
+        "src/Assets/pillars-desc/S & E.svg",
+        "src/Assets/pillars-desc/Unity.svg",
     ]
 
 
     function rotateGear() {
-        setPillarIndex(((rotation / 45) % 8));
-        setRotation((r) => (r + 45) % 7200);
+        setPillarIndex((pi) => (pi + 1) % pillars.length);
+        setRotation((r) => (r + 72) % 7200);
     }
 
 
@@ -45,7 +42,7 @@ export default function OurMissionpage() {
                                     "></img>
                         <div class="absolute inset-x-0 top-0 h-12 bg-gradient-to-b from-pulseWhite to-transparent pointer-events-none"></div>
                     </div>
-                    <img className="w-250 h-200 object-cover animate-flash-fade duration-500" src={pillars[pillarIndex]}></img>
+                    <img key={pillars[pillarIndex]} className="w-250 h-200 object-cover animate-flash-fade duration-500" src={pillars[pillarIndex]}></img>
                     {/*<p className={`p-10 m-30 text-xl transition-opacity duration-300 ease-in-out ${textShown ? 'opacity-100' : 'opacity-0'}`}>{pillars[pillarIndex]}</p>*/}
                 </div>
                     

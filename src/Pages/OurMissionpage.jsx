@@ -1,6 +1,6 @@
 import Footer from "../Components/Footer"
 import NavBar from "../Components/NavBar"
-import { useState, useRef, useLayoutEffect } from 'react'
+import { useState, useRef, useLayoutEffect, useEffect} from 'react'
 import gearLogo from "../Assets/pulse-logos/pulseBigStarLogo.png"
 import engagement from "../Assets/pillars-desc/Engagement.svg"
 import learning from "../Assets/pillars-desc/Learning.svg"
@@ -53,6 +53,16 @@ export default function OurMissionpage() {
         return () => observer.disconnect();
     }, []);
 
+    useEffect(() => {
+        if (PILLARS.length === 0) {
+            return;
+        }
+        const intervalID = setInterval(() => rotateGear(), 10000);
+        return () => {
+            clearInterval(intervalID);
+        };
+    }, [PILLARS.length])
+
     function rotateGear() {
         setPrevStep(step);
         setStep((s) => s + 1);
@@ -81,7 +91,7 @@ export default function OurMissionpage() {
                         onClick={rotateGear}
                         style={{transform: `rotate(${rotation}deg)`}}
                         className="h-200 w-200 bottom-0 absolute object-cover
-                                    transition-transform duration-700
+                                    transition-transform duration-800
                                     ease-in-out cursor-pointer
                                     "></img>
                         <div className="absolute inset-x-0 top-0 h-12 bg-linear-to-b from-pulseWhite to-transparent pointer-events-none"></div>

@@ -1,24 +1,67 @@
 import Footer from "../Components/Footer"
 import NavBar from "../Components/NavBar"
-import { useState } from 'react'
+import { useState, useRef, useLayoutEffect } from 'react'
+import gearLogo from "../Assets/pulse-logos/pulseBigStarLogo.png"
+import engagement from "../Assets/pillars-desc/Engagement.svg"
+import learning from "../Assets/pillars-desc/Learning.svg"
+import professionalism from "../Assets/pillars-desc/Professionalism.svg"
+import serviceEmpower from "../Assets/pillars-desc/SE.svg"
+import unity from "../Assets/pillars-desc/Unity.svg"
+
+const PILLARS = [
+    { src: engagement, alt: "Engagement" },
+    { src: learning, alt: "Learning" },
+    { src: professionalism, alt: "Professionalism" },
+    { src: serviceEmpower, alt: "Service & Empowerment" },
+    { src: unity, alt: "Unity" },
+]
+
+const STEP_DEG = 360 / PILLARS.length;  // 72
+const SWEEP_DEG = 45;                   // how far along the arc a description travels
+const DURATION_MS = 700;                // gear, exit and entry all share this
 
 export default function OurMissionpage() {
-    const [rotation, setRotation] = useState(0);
-    const [pillarIndex, setPillarIndex] = useState(0);
-    const pillars = [
-        "src/Assets/pillars-desc/Engagement.svg",
-        "src/Assets/pillars-desc/Learning.svg",
-        "src/Assets/pillars-desc/Professionalism.svg",
-        "src/Assets/pillars-desc/S & E.svg",
-        "src/Assets/pillars-desc/Unity.svg",
-    ]
+    const [step, setStep] = useState(0);
+    const [prevStep, setPrevStep] = useState(null);
 
+    const gearRef = useRef(null);
+    const descRef = useRef(null);
+    const [origin, setOrigin] = useState({ x: 500, y: -400 });
+
+    const rotation = step * STEP_DEG;
+    const idx = (s) => ((s % PILLARS.length) + PILLARS.length) % PILLARS.length;
+
+    // The descriptions arc about the gear's centre, so measure where that centre
+    // actually is rather than deriving it from the layout's height classes.
+    useLayoutEffect(() => {
+        const measure = () => {
+            const gear = gearRef.current;
+            const desc = descRef.current;
+            if (!gear || !desc) return;
+            // The gear is square and spins about its own centre, so its bounding
+            // box centre is its real centre even mid-rotation.
+            const g = gear.getBoundingClientRect();
+            const d = desc.getBoundingClientRect();
+            setOrigin({
+                x: g.left + g.width / 2 - d.left,
+                y: g.top + g.height / 2 - d.top,
+            });
+        };
+        measure();
+        const observer = new ResizeObserver(measure);
+        observer.observe(document.body);
+        return () => observer.disconnect();
+    }, []);
 
     function rotateGear() {
-        setPillarIndex((pi) => (pi + 1) % pillars.length);
-        setRotation((r) => (r + 72) % 7200);
+        setPrevStep(step);
+        setStep((s) => s + 1);
     }
 
+    const arcStyle = {
+        transformOrigin: `${origin.x}px ${origin.y}px`,
+        animationDuration: `${DURATION_MS}ms`,
+    };
 
     return(
         <div className="flex flex-col min-h-screen">
@@ -32,20 +75,42 @@ export default function OurMissionpage() {
 
                 <div className="flex flex-col items-center justify-center">
                     <div className="overflow-hidden h-100 w-200 relative">
-                        <img src="src/Assets/pulse-logos/pulseBigStarLogo.png" 
-                        alt="PULSE Pillars" 
-                        onClick={rotateGear} 
-                        style={{transform: `rotate(${rotation}deg)`}} 
+                        <img ref={gearRef}
+                        src={gearLogo}
+                        alt="PULSE Pillars"
+                        onClick={rotateGear}
+                        style={{transform: `rotate(${rotation}deg)`}}
                         className="h-200 w-200 bottom-0 absolute object-cover
-                                    transition-transform duration:700 
+                                    transition-transform duration-700
                                     ease-in-out cursor-pointer
                                     "></img>
-                        <div class="absolute inset-x-0 top-0 h-12 bg-gradient-to-b from-pulseWhite to-transparent pointer-events-none"></div>
+                        <div className="absolute inset-x-0 top-0 h-12 bg-linear-to-b from-pulseWhite to-transparent pointer-events-none"></div>
                     </div>
-                    <img key={pillars[pillarIndex]} className="w-250 h-200 object-cover animate-flash-fade duration-500" src={pillars[pillarIndex]}></img>
-                    {/*<p className={`p-10 m-30 text-xl transition-opacity duration-300 ease-in-out ${textShown ? 'opacity-100' : 'opacity-0'}`}>{pillars[pillarIndex]}</p>*/}
+
+                    {/* Outer box clips the arc's horizontal travel; inner box is sized
+                        exactly to the image so the measured origin matches it. */}
+                    <div className="w-full overflow-hidden flex justify-center">
+                        <div ref={descRef}
+                            className="relative w-250 h-200"
+                            style={{"--sweep": `${SWEEP_DEG}deg`}}>
+                            {prevStep !== null && (
+                                <img key={`out-${prevStep}`}
+                                    src={PILLARS[idx(prevStep)].src}
+                                    alt=""
+                                    aria-hidden="true"
+                                    onAnimationEnd={() => setPrevStep(null)}
+                                    style={arcStyle}
+                                    className="absolute inset-0 w-full h-full object-cover animate-arc-out"></img>
+                            )}
+                            <img key={`in-${step}`}
+                                src={PILLARS[idx(step)].src}
+                                alt={PILLARS[idx(step)].alt}
+                                style={arcStyle}
+                                className="absolute inset-0 w-full h-full object-cover animate-arc-in"></img>
+                        </div>
+                    </div>
                 </div>
-                    
+
             </div>
             <Footer/>
         </div>

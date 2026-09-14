@@ -5,22 +5,19 @@ import { useState } from 'react'
 export default function OurMissionpage() {
     const [rotation, setRotation] = useState(0);
     const [pillarIndex, setPillarIndex] = useState(0);
-    const [textShown , setTextShown] = useState(true);
     const pillars = [
-        "This is pillar one woohoo",
-        "This is pillar two oh yeaaa",
-        "This is pillar three lets gooo",
-        "This is pillar four ok im tired of this",
-        "Pillar 5",
-        "Pillar 6",
-        "Pillar 7",
-        "Pillar 8"
+        "src/Assets/pillars-desc/Professionalism.svg",
+        "src/Assets/pillars-desc/Professionalism.svg",
+        "src/Assets/pillars-desc/Professionalism.svg",
+        "src/Assets/pillars-desc/Professionalism.svg",
+        "src/Assets/pillars-desc/Professionalism.svg",
+        "src/Assets/pillars-desc/Professionalism.svg",
+        "src/Assets/pillars-desc/Professionalism.svg",
+        "src/Assets/pillars-desc/Professionalism.svg"
     ]
 
 
     function rotateGear() {
-        setTextShown(() => false);
-        setTextShown(() => true);
         setPillarIndex(((rotation / 45) % 8));
         setRotation((r) => (r + 45) % 7200);
     }
@@ -48,7 +45,8 @@ export default function OurMissionpage() {
                                     "></img>
                         <div class="absolute inset-x-0 top-0 h-12 bg-gradient-to-b from-pulseWhite to-transparent pointer-events-none"></div>
                     </div>
-                    <p className={`p-10 m-30 text-xl transition-opacity duration-300 ease-in-out ${textShown ? 'opacity-100' : 'opacity-0'}`}>{pillars[pillarIndex]}</p>
+                    <img className="w-250 h-200 object-cover animate-flash-fade duration-500" src={pillars[pillarIndex]}></img>
+                    {/*<p className={`p-10 m-30 text-xl transition-opacity duration-300 ease-in-out ${textShown ? 'opacity-100' : 'opacity-0'}`}>{pillars[pillarIndex]}</p>*/}
                 </div>
                     
             </div>

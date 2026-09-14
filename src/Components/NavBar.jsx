@@ -12,7 +12,8 @@ export default function NavBar() {
                     <Dropdown titleName='About' pages={["Our Mission", "Board"] } links={["/our-mission", "/board"]}/>
                 </li>
                 <li><Link to="/events">Events</Link></li>
-                <button className="rounded-lg bg-pulseYellow px-5 py-1 text-pulseOrange bold">Join</button>
+                <button className="rounded-lg bg-pulseYellow px-5 py-1 text-pulseOrange bold cursor-pointer hover:bg-amber-200 transition-colors duration-300"
+                        type="button" onClick={() => window.open("https://docs.google.com/forms/d/e/1FAIpQLSccz3VRtcmbl_kfuhE94vAyzo4o__pEpltvJCwBevct4CW9uA/viewform")}>Join</button>
             </ul>
             
         </nav>

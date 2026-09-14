@@ -35,19 +35,22 @@ export default function OurMissionpage() {
                     <p className="text-xl">Pilipino Undergraduate Leaders of Science and Engineering (PULSE) at UC San Diego cultivates a community where students in science and engineering develop as technical practitioners while celebrating Pilipino identity and culture. We teach foundational skills through workshops and lab sessions, build genuine connection so no member navigates a demanding path alone, and channel those skills into projects that serve our members, our campus, and the wider Pilipino community. PULSE is open to all UCSD students, in any technical discipline. We measure our success by whether members feel at home here, thrive in their fields, and graduate with the skills, confidence, and relationships to go further than they imagined.</p>
                 </div>
 
-                <div className="flex items-center">
-                    <div className="relative max-w-400 max-h-400">
+
+                <div className="flex flex-col items-center justify-center">
+                    <div className="overflow-hidden h-100 w-200 relative">
                         <img src="src/Assets/pulse-logos/pulseBigStarLogo.png" 
-                            alt="PULSE Pillars" 
-                            onClick={rotateGear} 
-                            style={{transform: `rotate(${rotation}deg)`}} 
-                            className="h-full w-full -ml-65 my-20
-                                        transition-transform duration:700 
-                                        ease-in-out cursor-pointer
-                                        "></img>
+                        alt="PULSE Pillars" 
+                        onClick={rotateGear} 
+                        style={{transform: `rotate(${rotation}deg)`}} 
+                        className="h-200 w-200 bottom-0 absolute object-cover
+                                    transition-transform duration:700 
+                                    ease-in-out cursor-pointer
+                                    "></img>
+                        <div class="absolute inset-x-0 top-0 h-12 bg-gradient-to-b from-pulseWhite to-transparent pointer-events-none"></div>
                     </div>
-                    <p className={`transition-opacity duration-300 ease-in-out ${textShown ? 'opacity-100' : 'opacity-0'}`}>{pillars[pillarIndex]}</p>
+                    <p className={`p-10 m-30 text-xl transition-opacity duration-300 ease-in-out ${textShown ? 'opacity-100' : 'opacity-0'}`}>{pillars[pillarIndex]}</p>
                 </div>
+                    
             </div>
             <Footer/>
         </div>

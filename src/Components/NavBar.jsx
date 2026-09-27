@@ -5,7 +5,7 @@ import Dropdown from './Dropdown';
 export default function NavBar() {
     return(
         <nav className="flex m bg-white rounded-3xl p-4 items-center sticky top-0 mx-6 my-4 z-100">
-            <Link to="/"><img src={myLogo} className='w-16'></img></Link>
+            <Link to="/"><img src={myLogo} className='min-w-16 max-w-16'></img></Link>
             <ul className="flex ml-auto gap-5 mr-10 text-2xl items-center">
                 <li><Link to="/"><span className='hover:text-gray-600 duration-200'>Home</span></Link></li>
                 <li className='relative cursor-pointer group'> 

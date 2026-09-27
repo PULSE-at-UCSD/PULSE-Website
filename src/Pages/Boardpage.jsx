@@ -17,7 +17,8 @@ export default function Boardpage() {
     return(
         <div className="flex flex-col min-h-screen">
             <NavBar/>
-            <div  className="flex-1 grid grid-cols-3 gap-4 mb-10">
+            <h1 className="mt-10 mx-10 mb-1 p-5 pb-0 text-left lg:text-center text-pulseBlue font-bold text-4xl">Meet the Team</h1>
+            <div  className="flex-1 grid grid-cols-1 lg:grid-cols-3 gap-4 mb-10">
                 {members.map((member, index) => {
                     return <BoardMemberFrame key={index} member={member}></BoardMemberFrame>
                 })}

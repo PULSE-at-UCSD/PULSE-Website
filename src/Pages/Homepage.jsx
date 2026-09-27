@@ -8,14 +8,14 @@ export default function Homepage() {
 
             <NavBar/>
 
-            <div className=" bg-white mt-10 mx-10 mb-40 p-5 rounded-xl shadow-2xl flex items-center justify-evenly">
+            <div className=" bg-white mt-10 mx-10 mb-20 p-5 rounded-xl shadow-2xl flex flex-col-reverse lg:flex-row items-center justify-evenly">
                 <div className="max-w-250 flex-1">
                     <ImgScroller imgs={["omopchd0.jpg", "omopchd1.jpg", "omopchd2.jpg", "omopchd3.jpg", "omopchd4.jpg"]}/>
                 </div>
 
-                <div className="flex flex-col items-center justify-center p-20 max-w-6xl text-2xl text-center flex-1">
+                <div className="flex flex-col items-center justify-center lg:p-20 p-10 max-w-6xl text-2xl text-left lg:text-center flex-1">
                     <img src="src/Assets/pulse-logos/pulseHomePageIcon.png"></img>
-                    <p> 
+                    <p className="pt-5"> 
                         We're PULSE! Pilipino Undergraduate Leaders of Science 
                         and Engineering at UC San Diego.We teach the technical 
                         skills your classes assume you already have, build 

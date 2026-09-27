@@ -78,20 +78,20 @@ export default function OurMissionpage() {
         <div className="flex flex-col min-h-screen">
             <NavBar/>
             <div  className="flex-1">
-                <div className="text-pulseBlue font-bold p-15 text-center">
-                    <h1 className="text-4xl pb-5">Our Mission</h1>
+                <div className="text-left lg:text-center bg-white mt-10 mx-10 mb-5 p-5 rounded-xl shadow-sm">
+                    <h1 className="text-pulseBlue font-bold text-4xl pb-5">Our Mission</h1>
                     <p className="text-xl">Pilipino Undergraduate Leaders of Science and Engineering (PULSE) at UC San Diego cultivates a community where students in science and engineering develop as technical practitioners while celebrating Pilipino identity and culture. We teach foundational skills through workshops and lab sessions, build genuine connection so no member navigates a demanding path alone, and channel those skills into projects that serve our members, our campus, and the wider Pilipino community. PULSE is open to all UCSD students, in any technical discipline. We measure our success by whether members feel at home here, thrive in their fields, and graduate with the skills, confidence, and relationships to go further than they imagined.</p>
                 </div>
 
 
                 <div className="flex flex-col items-center justify-center">
-                    <div className="overflow-hidden h-100 w-200 relative">
+                    <div className="overflow-hidden h-50 w-100 md:h-75 md:w-150 lg:h-100 lg:w-200 relative">
                         <img ref={gearRef}
                         src={gearLogo}
                         alt="PULSE Pillars"
                         onClick={rotateGear}
                         style={{transform: `rotate(${rotation}deg)`}}
-                        className="h-200 w-200 bottom-0 absolute object-cover
+                        className="h-100 w-100 md:h-150 md:w-150 lg:h-200 lg:w-200 absolute bottom-0 object-cover
                                     transition-transform duration-800
                                     ease-in-out cursor-pointer
                                     "></img>
@@ -100,9 +100,9 @@ export default function OurMissionpage() {
 
                     {/* Outer box clips the arc's horizontal travel; inner box is sized
                         exactly to the image so the measured origin matches it. */}
-                    <div className="w-full overflow-hidden flex justify-center">
+                    <div className="w-full overflow-hidden flex justify-center mb-10">
                         <div ref={descRef}
-                            className="relative w-250 h-200"
+                            className="relative w-130 h-90 md:w-200 md:h-150 lg:w-250 lg:h-200"
                             style={{"--sweep": `${SWEEP_DEG}deg`}}>
                             {prevStep !== null && (
                                 <img key={`out-${prevStep}`}

@@ -8,7 +8,7 @@ import usePageLoader from './Components/usePageLoader.js'
 function App() {
     usePageLoader();
     return (
-        <div className='flex flex-col bg-pulseWhite min-h-screen m-0'>
+        <div className='flex flex-col bg-banig min-h-screen m-0'>
             <Routes>
                 <Route index element={<Homepage/>}/>
                 <Route path="our-mission" element={<OurMissionpage/>}/>

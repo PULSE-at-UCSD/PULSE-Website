@@ -160,7 +160,8 @@ export default function OurMissionpage() {
                         <span className="pointer-fine:hidden">Tap</span>
                         <span className="hidden pointer-fine:inline">Click</span> the gear to explore our pillars
                     </p>
-                    <div className="overflow-hidden w-(--gear) h-[calc(var(--gear)/2)] relative">
+                    {/* Top edge masked so the gear fades into the background pattern */}
+                    <div className="overflow-hidden w-(--gear) h-[calc(var(--gear)/2)] relative mask-[linear-gradient(to_bottom,transparent,black_3rem)]">
                         <button ref={gearRef}
                         type="button"
                         aria-label="Show next pillar"
@@ -172,9 +173,7 @@ export default function OurMissionpage() {
                                     focus-visible:outline-4 focus-visible:outline-pulseBlue
                                     ${hasInteracted ? "" : "animate-gear-nudge"}`}>
                             <img src={gearLogo} alt="" className="size-full"></img>
-                        </button>
-                        <div className="absolute inset-x-0 top-0 h-12 bg-linear-to-b from-pulseWhite to-transparent pointer-events-none"></div>
-                    </div>
+                        </button>                    </div>
 
                     <div className="flex gap-1 justify-center my-3">
                         {PILLARS.map((p, i) => {

@@ -63,9 +63,15 @@ export default function Homepage() {
                          className="relative w-full drop-shadow-[0_0_2rem_rgb(251_114_0/0.45)]"/>
                 </div>
                 <p className={`relative max-w-3xl pt-6 text-xl md:text-2xl text-pulseBlue text-center ${ready ? "animate-hero-in [animation-delay:0.3s]" : "opacity-0"}`}>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                    enim ad minim veniam, quis nostrud exercitation ullamco laboris.
+                    We're PULSE! Pilipino Undergraduate Leaders of Science                          
+                    and Engineering at UC San Diego.We teach the technical                          
+                    skills your classes assume you already have, build                          
+                    projects that give back to our campus and community,                          
+                    and celebrate Pilipino identity while we do it. Whether                          
+                    you're a first-year still figuring out your major or a                          
+                    senior deep in research, there's a seat for you here.                          
+                    Every UCSD student in any technical discipline is                          
+                    welcome.
                 </p>
             </section>
 

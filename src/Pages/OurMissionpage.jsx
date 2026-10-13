@@ -108,6 +108,16 @@ export default function OurMissionpage() {
         setStep(step + delta);
     };
 
+    // Warm the cache so a description is ready before it arcs in;
+    // otherwise the browser briefly draws (and rotates) its alt text.
+    useEffect(() => {
+        PILLARS.forEach(({ src }) => {
+            const img = new Image();
+            img.src = src;
+            img.decode?.().catch(() => {});
+        });
+    }, []);
+
     useEffect(() => {
         if (PILLARS.length === 0) {
             return;
@@ -148,7 +158,7 @@ export default function OurMissionpage() {
                         className={`mb-3 rounded-full bg-white px-4 py-1 text-pulseBlue font-semibold shadow-sm
                                     transition-opacity duration-500 ${hasInteracted ? "opacity-0" : "opacity-100"}`}>
                         <span className="pointer-fine:hidden">Tap</span>
-                        <span className="hidden pointer-fine:inline">Click</span> the gear to explore our pillars ↻
+                        <span className="hidden pointer-fine:inline">Click</span> the gear to explore our pillars
                     </p>
                     <div className="overflow-hidden w-(--gear) h-[calc(var(--gear)/2)] relative">
                         <button ref={gearRef}
@@ -203,7 +213,8 @@ export default function OurMissionpage() {
                                 src={PILLARS[idx(step)].src}
                                 alt={PILLARS[idx(step)].alt}
                                 style={arcStyle}
-                                className="absolute inset-0 w-full h-full object-contain animate-arc-in"></img>
+                                // step only ever increases, so 0 means first render: show it in place.
+                                className={`absolute inset-0 w-full h-full object-contain ${step === 0 ? "" : "animate-arc-in"}`}></img>
                         </div>
                     </div>
                 </div>

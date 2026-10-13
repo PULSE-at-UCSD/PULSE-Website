@@ -7,6 +7,7 @@
     --animate-flash-fade: fade-in 0.5s ease-in-out forwards, flash-in 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
     --animate-arc-in: arc-in 0.7s ease-in-out both;
     --animate-arc-out: arc-out 0.7s ease-in-out both;
+    --animate-gear-nudge: gear-nudge 4s ease-in-out infinite;
     /*Colors*/
     --color-pulseWhite: #FFF1C2;
     --color-pulseYellow: #F8DF38;
@@ -65,7 +66,19 @@
     }
 }
 
+/*Gear nudge - a quick wiggle every few seconds hinting the gear is clickable.
+  Uses the standalone rotate property so it stacks on the inline transform.*/
+@keyframes gear-nudge {
+    0%, 80%, 100% { rotate: 0deg; }
+    85% { rotate: -10deg; }
+    90% { rotate: 8deg; }
+    95% { rotate: -4deg; }
+}
+
 @media (prefers-reduced-motion: reduce) {
+    @keyframes gear-nudge {
+        from, to { rotate: 0deg; }
+    }
     @keyframes arc-in {
         from { opacity: 0; }
         to { opacity: 1; }

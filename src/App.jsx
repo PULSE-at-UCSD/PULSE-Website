@@ -5,8 +5,10 @@ import Boardpage from './Pages/Boardpage.jsx'
 import Eventspage from './Pages/Eventspage.jsx'
 import NotFoundPage from './Pages/NotFoundPage.jsx'
 import usePageLoader from './Components/usePageLoader.js'
+import useScrollToTop from './Components/useScrollToTop.js'
 function App() {
     usePageLoader();
+    useScrollToTop();
     return (
         <div className='flex flex-col bg-banig min-h-screen m-0'>
             <Routes>

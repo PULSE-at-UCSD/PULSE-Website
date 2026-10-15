@@ -6,8 +6,54 @@
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PULSE UCSD</title>
+    <!-- Loader styles are inlined so the overlay shows before the CSS bundle arrives -->
+    <style>
+      #page-loader {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        background: #FFF1C2;
+        transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out;
+      }
+      #page-loader.page-loader--hidden {
+        opacity: 0;
+        visibility: hidden;
+      }
+      #page-loader img {
+        width: 6rem;
+        height: 6rem;
+        animation: page-loader-spin 5s linear infinite;
+      }
+      #page-loader p {
+        margin: 0;
+        font-family: system-ui;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        color: #395A91;
+      }
+      @keyframes page-loader-spin {
+        to { transform: rotate(360deg); }
+      }
+      @keyframes page-loader-pulse {
+        50% { opacity: 0.5; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        #page-loader img {
+          animation: page-loader-pulse 1.5s ease-in-out infinite;
+        }
+      }
+    </style>
   </head>
   <body>
+    <div id="page-loader" role="status" aria-live="polite">
+      <img src="/src/Assets/pulse-logos/pulseBigStarLogo.png" alt="" />
+      <p>LOADING…</p>
+    </div>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

@@ -129,7 +129,11 @@ export default function EventCalendar() {
                                 {/* Desktop: event blocks */}
                                 <div className='hidden md:flex flex-col gap-1 mt-1 text-sm'>
                                     {events.slice(0, MAX_PER_CELL).map((event) => (
-                                        <EventBlock key={event.id} event={event} onSelect={selectEvent}/>
+                                        <EventBlock key={event.id} event={event} onSelect={(event, anchor) => {
+                                            // Set the day directly: selectDay would close the popover being opened
+                                            setSelectedDay(day);
+                                            selectEvent(event, anchor);
+                                        }}/>
                                     ))}
                                     {events.length > MAX_PER_CELL &&
                                         <span className='px-2 text-pulseOrange hover:underline'>

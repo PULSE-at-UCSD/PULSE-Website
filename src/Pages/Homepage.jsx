@@ -1,6 +1,7 @@
 import ImgMarquee from "../Components/ImgMarquee";
 import NavBar from "../Components/NavBar";
 import Footer from "../Components/Footer";
+import UpcomingEvents from "../Components/UpcomingEvents";
 import useLoaderDone from "../Components/useLoaderDone";
 import homePageIcon from "../Assets/pulse-logos/pulseHomePageIcon.png";
 import omopchd0 from "../Assets/omoplaceholders/omopchd0.jpg";
@@ -25,9 +26,6 @@ function rayPoints(angle, length, width) {
     const [px, py] = [-dy * width, dx * width];
     return `${px},${py} ${dx * length},${dy * length} ${-px},${-py}`;
 }
-
-// TODO: replace with real upcoming events
-const PLACEHOLDER_EVENTS = [{}, {}, {}];
 
 export default function Homepage() {
     const ready = useLoaderDone();
@@ -79,18 +77,7 @@ export default function Homepage() {
 
             <section id="events" className="px-6 md:px-20 py-16">
                 <h2 className="text-4xl text-pulseBlue font-bold mb-8 text-left md:text-center">Upcoming Events</h2>
-                <div className="grid md:grid-cols-3 gap-6">
-                    {PLACEHOLDER_EVENTS.map((event, i) => (
-                        <div key={i} className="bg-white rounded-xl shadow-lg p-6 flex flex-col gap-3">
-                            {/* Date */}
-                            <div className="h-5 w-1/3 rounded bg-gray-200"/>
-                            {/* Title */}
-                            <div className="h-7 w-3/4 rounded bg-gray-200"/>
-                            {/* Location */}
-                            <div className="h-5 w-1/2 rounded bg-gray-200"/>
-                        </div>
-                    ))}
-                </div>
+                <UpcomingEvents/>
             </section>
 
             <Footer/>

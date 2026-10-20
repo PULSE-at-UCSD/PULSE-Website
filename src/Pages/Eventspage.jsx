@@ -1,5 +1,6 @@
 import Footer from "../Components/Footer";
 import NavBar from "../Components/NavBar";
+import EventCalendar from "../Components/EventCalendar";
 
 export default function Eventspage() {
     return(
@@ -12,7 +13,9 @@ export default function Eventspage() {
                         Stay up to date on all our latest events and meetings!
                     </p>
                 </div>
-                <iframe src="https://calendar.google.com/calendar/embed?src=f9fb16d7e982d679db9d01d066e36dc98d5c004ba7e1cb43a34cb38aad533b6f%40group.calendar.google.com&ctz=America%2FLos_Angeles" className="w-full h-150 p-4"></iframe>
+                <div className="max-w-6xl mx-auto px-4 md:px-10 py-7 md:py-10">
+                    <EventCalendar/>
+                </div>
             </div>
             <Footer/>
         </div>

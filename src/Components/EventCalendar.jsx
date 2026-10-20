@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo, useCallback } from 'react'
+import { useState, useEffect, useMemo, useCallback, useRef } from 'react'
 import EventPopup from './EventPopup'
 import { todayKey, monthOf, shiftMonth, monthLabel, monthGrid, addDays, dayNumber, longDate, shortTime, eventsByDay } from './calendarDates'
 
@@ -10,7 +10,7 @@ const navButton = 'px-3 py-1 rounded-lg cursor-pointer hover:text-pulseOrange tr
 
 function EventBlock({ event, onSelect, className = "" }) {
     return(
-        <button type='button' onClick={(e) => { e.stopPropagation(); onSelect(event); }}
+        <button type='button' onClick={(e) => { e.stopPropagation(); onSelect(event, e.currentTarget); }}
             className={`block w-full text-left rounded-md bg-pulseOrange text-white px-2 py-0.5 truncate cursor-pointer
                         hover:bg-orange-400 transition-colors duration-200 ${className}`}>
             {!event.allDay && <span className='font-bold mr-1'>{shortTime(event.start)}</span>}
@@ -23,7 +23,10 @@ export default function EventCalendar() {
     const today = todayKey();
     const [month, setMonth] = useState(monthOf(today));
     const [selectedDay, setSelectedDay] = useState(null);
-    const [selectedEvent, setSelectedEvent] = useState(null);
+    // The open popover: { event, anchor (the clicked element), n (remounts it per open) }
+    const [selected, setSelected] = useState(null);
+    const openCount = useRef(0);
+    const rootRef = useRef(null);
     // Responses per month, so flipping back to a month doesn't refetch
     const [loaded, setLoaded] = useState({});
     const [failed, setFailed] = useState({});
@@ -55,16 +58,27 @@ export default function EventCalendar() {
 
     function goTo(newMonth) {
         setMonth(newMonth);
-        setSelectedDay(null);
+        selectDay(null);
         setFailed((prev) => ({ ...prev, [newMonth]: false }));  // retry on revisit
     }
 
-    const closePopup = useCallback(() => setSelectedEvent(null), []);
+    // The day list's rows unmount when the day changes, so close any popover on them
+    function selectDay(day) {
+        setSelectedDay(day);
+        setSelected(null);
+    }
+
+    function selectEvent(event, anchor) {
+        if (selected?.anchor === anchor) setSelected(null);
+        else setSelected({ event, anchor, n: ++openCount.current });
+    }
+
+    const closePopup = useCallback(() => setSelected(null), []);
     const dayEvents = selectedDay ? byDay.get(selectedDay) ?? [] : [];
     const subscribeUrl = data?.subscribeUrl ?? Object.values(loaded)[0]?.subscribeUrl;
 
     return(
-        <div className='text-pulseBlue'>
+        <div ref={rootRef} className='relative text-pulseBlue'>
             <div className={`${glass} p-3 md:p-5`}>
                 {/* Month header */}
                 <div className='flex items-center justify-between mb-3'>
@@ -95,7 +109,7 @@ export default function EventCalendar() {
                         const inMonth = monthOf(day) === month;
                         const isSelected = day === selectedDay;
                         return(
-                            <div key={day} onClick={() => setSelectedDay(isSelected ? null : day)}
+                            <div key={day} data-day={day} onClick={() => selectDay(isSelected ? null : day)}
                                 className={`min-h-14 md:min-h-28 p-1 border-r-1 border-b-1 border-pulseBlue/15 cursor-pointer
                                             transition-colors duration-200 hover:bg-pulseOrange/5
                                             ${inMonth ? '' : 'opacity-40'} ${isSelected ? 'bg-pulseOrange/10' : ''}`}>
@@ -115,7 +129,7 @@ export default function EventCalendar() {
                                 {/* Desktop: event blocks */}
                                 <div className='hidden md:flex flex-col gap-1 mt-1 text-sm'>
                                     {events.slice(0, MAX_PER_CELL).map((event) => (
-                                        <EventBlock key={event.id} event={event} onSelect={setSelectedEvent}/>
+                                        <EventBlock key={event.id} event={event} onSelect={selectEvent}/>
                                     ))}
                                     {events.length > MAX_PER_CELL &&
                                         <span className='px-2 text-pulseOrange hover:underline'>
@@ -135,7 +149,7 @@ export default function EventCalendar() {
                             ? <p className='text-black/60'>No events this day.</p>
                             : <div className='flex flex-col gap-2 text-lg'>
                                 {dayEvents.map((event) => (
-                                    <EventBlock key={event.id} event={event} onSelect={setSelectedEvent} className='py-1.5'/>
+                                    <EventBlock key={event.id} event={event} onSelect={selectEvent} className='py-1.5'/>
                                 ))}
                             </div>}
                     </div>}
@@ -149,7 +163,9 @@ export default function EventCalendar() {
                     </a>
                 </div>}
 
-            {selectedEvent && <EventPopup event={selectedEvent} onClose={closePopup}/>}
+            {selected &&
+                <EventPopup key={selected.n} event={selected.event} anchor={selected.anchor}
+                    container={rootRef} onClose={closePopup}/>}
         </div>
     );
 }

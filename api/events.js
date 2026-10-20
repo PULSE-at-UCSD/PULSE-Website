@@ -69,6 +69,7 @@ export async function GET(request) {
             location: item.location ?? "",
             description: toPlainText(item.description),
             htmlLink: item.htmlLink,
+            recurringEventId: item.recurringEventId ?? null,
         }));
 
     return json(

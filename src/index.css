@@ -1,7 +1,9 @@
 @import "tailwindcss";
 
 @theme {
-    
+    /*Font*/
+    --font-sans: "Fira Sans", ui-sans-serif, system-ui, sans-serif;
+
     --animate-fade-in: fade-in 0.5s ease-in-out forwards;
     --animate-flash-in: flash-in 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
     --animate-flash-fade: fade-in 0.5s ease-in-out forwards, flash-in 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;

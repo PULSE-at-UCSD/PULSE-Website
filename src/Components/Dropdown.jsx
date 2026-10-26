@@ -17,12 +17,16 @@ export default function Dropdown({titleName = "", pages = [], links = []}){
     return(
         <div ref={dropdownRef}
             onMouseEnter={canHover ? () => setIsOpen(true) : undefined}
-            onMouseLeave={canHover ? () => setIsOpen(false) : undefined}>
-            <span className={`duration-200 ${isOpen ? 'text-pulseOrange' : 'hover:text-gray-600'}`} onClick={toggleIsOpen}>{titleName}</span>
-            {/* before: element bridges the gap so hover isn't lost moving down to the menu */}
+            onMouseLeave={canHover ? () => setIsOpen(false) : undefined}
+            // Close once keyboard focus tabs out of the menu
+            onBlur={(e) => { if (!e.currentTarget.contains(e.relatedTarget)) setIsOpen(false); }}>
+            <button type='button' aria-expanded={isOpen} onClick={toggleIsOpen}
+                className={`cursor-pointer duration-200 ${isOpen ? 'text-pulseOrange' : 'hover:text-gray-600'}`}>{titleName}</button>
+            {/* before: element bridges the gap so hover isn't lost moving down to the menu.
+                invisible keeps the closed menu's links out of the tab order */}
             <div className={`absolute left-1/2 -translate-x-1/2 top-full mt-3 py-2 rounded-xl bg-white/70 backdrop-blur-md border-1 border-pulseOrange/30 shadow-lg
                             before:absolute before:inset-x-0 before:-top-3 before:h-3 transition-all duration-200 ease-out
-                            ${isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2 pointer-events-none'}`}>
+                            ${isOpen ? 'opacity-100 translate-y-0' : 'invisible opacity-0 -translate-y-2 pointer-events-none'}`}>
                 {pages.map((page, index) =>
                     <Link key={links[index]} to={links[index]} onClick={() => setIsOpen(false)}
                         className='block px-5 py-2 text-xl whitespace-nowrap hover:text-pulseOrange hover:translate-x-1 transition-all duration-200'>

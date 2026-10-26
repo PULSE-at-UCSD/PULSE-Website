@@ -11,7 +11,7 @@ export default function Boardpage() {
         {name:"Stephen Andrae Ulla", position:"Co-President", year:"4th Year", major:"Math Computer Science", ...memberAssets.stephen, logoCorner:"left"},
         {name:"Jhynelle Dulay", position:"Internal Vice President", year:"4th Year", major:"Structural Engineering", ...memberAssets.jhynelle, logoCorner:"left"},
         {name:"Antonio Dimafelix", position:"External Vice President", year:"4th Year", major:"Bioengineering", ...memberAssets.anton, logoCorner:"left"},
-        {name:"Marc Jaden Ramos", position:"Graduate Liason", year:"Masters", major:"Mechanical/Aerospace Engineering", ...memberAssets.marc, logoCorner:"right"},
+        {name:"Marc Jaden Ramos", position:"Graduate Liaison", year:"Masters", major:"Mechanical/Aerospace Engineering", ...memberAssets.marc, logoCorner:"right"},
         {name:"Keira Umali", position:"Academic Director", year:"4th Year", major:"Math-CS", ...memberAssets.keira, logoCorner:"right"},
         {name:"Justine Latorre", position:"Engineering Project Director", year:"2nd Year", major:"Chemical Engineering", ...memberAssets.justine, logoCorner:"left"},
         {name:"Jaron Perez", position:"Interdisciplinary CS Project Director", year:"2nd Year", major:"Computer Science", ...memberAssets.jaron, logoCorner:"right"},

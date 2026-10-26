@@ -62,7 +62,7 @@ export default function Homepage() {
                 </div>
                 <p className={`relative max-w-3xl pt-6 text-xl md:text-2xl text-pulseBlue text-center ${ready ? "animate-hero-in [animation-delay:0.3s]" : "opacity-0"}`}>
                     We're PULSE! Pilipino Undergraduate Leaders of Science                          
-                    and Engineering at UC San Diego.We teach the technical                          
+                    and Engineering at UC San Diego. We teach the technical                          
                     skills your classes assume you already have, build                          
                     projects that give back to our campus and community,                          
                     and celebrate Pilipino identity while we do it. Whether                          

@@ -12,7 +12,7 @@ const PILLARS = [
     { src: professionalism, alt: "Professionalism" },
     { src: unity, alt: "Unity" },
     { src: learning, alt: "Learning" },
-    { src: serviceEmpower, alt: "Service & Empowerment" },
+    { src: serviceEmpower, alt: "Science and Engineering" },
     { src: engagement, alt: "Engagement" },
 ]
 

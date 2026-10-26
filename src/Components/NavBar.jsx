@@ -18,7 +18,7 @@ export default function NavBar() {
                 </li>
                 <li><Link to="/events"><span className='hover:text-pulseOrange duration-200'>Events</span></Link></li>
             </ul>
-            <button className="hidden md:block mr-10 ml-auto text-2xl rounded-lg bg-pulseYellow px-5 py-1 text-pulseOrange bold cursor-pointer hover:bg-amber-200 hover:text-orange-400 transition-colors duration-200"
+            <button className="hidden md:hidden mr-10 ml-auto text-2xl rounded-lg bg-pulseYellow px-5 py-1 text-pulseOrange bold cursor-pointer hover:bg-amber-200 hover:text-orange-400 transition-colors duration-200"
                         type="button" onClick={() => window.open(joinUrl)}>Join</button>
             <MobileMenu className='md:hidden ml-auto mr-5' aboutPages={aboutPages} aboutLinks={aboutLinks} joinUrl={joinUrl}/>
         </nav>

@@ -7,18 +7,18 @@ import * as memberAssets from "../Assets/Board-page/members";
 export default function Boardpage() {
     //logoCorner: "left" or "right" - which top corner of the photo the logo sits in
     const members = [
-        {name:"Stephen Andrae Ulla", position:"Co-President", year:"4th Year", major:"Math Computer Science", ...memberAssets.stephen, logoCorner:"left"},
         {name:"Luke Mercado", position:"Co-President", year:"4th Year", major:"Electrical Engineering", ...memberAssets.luke, logoCorner:"right"},
-        {name:"Jhynelle Dulay", position:"Board Member", year:"TBD", major:"TBD", ...memberAssets.jhynelle, logoCorner:"left"},
-        {name:"Marc Jaden Ramos", position:"Board Member", year:"Masters", major:"Mechanical Engineer?", ...memberAssets.marc, logoCorner:"right"},
-        {name:"Anton", position:"Board Member", year:"TBD", major:"TBD", ...memberAssets.anton, logoCorner:"left"},
-        {name:"Keira", position:"Board Member", year:"TBD", major:"TBD", ...memberAssets.keira, logoCorner:"right"},
-        {name:"Justine Latorne", position:"Board Member", year:"TBD", major:"Chemical Engineering", ...memberAssets.justine, logoCorner:"left"},
-        {name:"Caylie", position:"TBD", year:"TBD", major:"TBD", ...memberAssets.caylie, logoCorner:"right"},
-        {name:"Jaren", position:"TBD", year:"TBD", major:"TBD", ...memberAssets.jaren, logoCorner:"left"},
-        {name:"Jaron", position:"TBD", year:"TBD", major:"TBD", ...memberAssets.jaron, logoCorner:"right"},
-        {name:"Jasmine", position:"TBD", year:"TBD", major:"TBD", ...memberAssets.jasmine, logoCorner:"left"},
-        {name:"Kadyn", position:"TBD", year:"TBD", major:"TBD", ...memberAssets.kadyn, logoCorner:"right"}
+        {name:"Stephen Andrae Ulla", position:"Co-President", year:"4th Year", major:"Math Computer Science", ...memberAssets.stephen, logoCorner:"left"},
+        {name:"Jhynelle Dulay", position:"Internal Vice President", year:"4th Year", major:"Structural Engineering", ...memberAssets.jhynelle, logoCorner:"left"},
+        {name:"Antonio Dimafelix", position:"External Vice President", year:"4th Year", major:"Bioengineering", ...memberAssets.anton, logoCorner:"left"},
+        {name:"Marc Jaden Ramos", position:"Graduate Liason", year:"Masters", major:"Mechanical/Aerospace Engineering", ...memberAssets.marc, logoCorner:"right"},
+        {name:"Keira Umali", position:"Academic Director", year:"4th Year", major:"Math-CS", ...memberAssets.keira, logoCorner:"right"},
+        {name:"Justine Latorre", position:"Engineering Project Director", year:"2nd Year", major:"Chemical Engineering", ...memberAssets.justine, logoCorner:"left"},
+        {name:"Jaron Perez", position:"Interdisciplinary CS Project Director", year:"2nd Year", major:"Computer Science", ...memberAssets.jaron, logoCorner:"right"},
+        {name:"Jasmine Ebalo", position:"Marketing & Communications Director", year:"3rd Year", major:"Structural Engineering", ...memberAssets.jasmine, logoCorner:"left"},
+        {name:"Jaren Jimenez", position:"Professional Development Director", year:"4th Year", major:"Electrical Engineering", ...memberAssets.jaren, logoCorner:"left"},
+        {name:"Kadyn Yap", position:"Treasurer", year:"1st Year", major:"Structural Engineering", ...memberAssets.kadyn, logoCorner:"right"},
+        {name:"Caylie Lansang", position:"Secretary", year:"2nd Year", major:"Electrical Engineering", ...memberAssets.caylie, logoCorner:"right"},
     ]
 
     return(

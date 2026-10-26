@@ -48,7 +48,7 @@ export default function MobileMenu({aboutPages = [], aboutLinks = [], joinUrl = 
 
                 <Link to="/events" onClick={close} className={linkStyle}>Events</Link>
 
-                <div className='px-5 pt-2 pb-1'>
+                <div className='hidden px-5 pt-2 pb-1'>
                     <button type="button" onClick={() => { window.open(joinUrl); close(); }}
                         className="w-full text-xl rounded-lg bg-pulseYellow py-1 text-pulseOrange cursor-pointer hover:bg-amber-200 hover:text-orange-400 transition-colors duration-200">
                         Join

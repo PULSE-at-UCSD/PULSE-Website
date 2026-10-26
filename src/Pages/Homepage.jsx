@@ -4,13 +4,13 @@ import Footer from "../Components/Footer";
 import UpcomingEvents from "../Components/UpcomingEvents";
 import useLoaderDone from "../Components/useLoaderDone";
 import homePageIcon from "../Assets/pulse-logos/pulseHomePageIcon.png";
-import omopchd0 from "../Assets/omoplaceholders/omopchd0.jpg";
-import omopchd1 from "../Assets/omoplaceholders/omopchd1.jpg";
-import omopchd2 from "../Assets/omoplaceholders/omopchd2.jpg";
-import omopchd3 from "../Assets/omoplaceholders/omopchd3.jpg";
-import omopchd4 from "../Assets/omoplaceholders/omopchd4.jpg";
+import BendreiStephenTabling from "../Assets/PulsePhotos/BendreiStephenTabling.jpg";
+import FirstPulseGroup from "../Assets/PulsePhotos/FirstPulseGroup.jpg";
+import HaloHaloBar from "../Assets/PulsePhotos/HaloHaloBar.jpg";
+import IPOPulse from "../Assets/PulsePhotos/IPOPulse.jpg";
+import PulseSocialChilling from "../Assets/PulsePhotos/PulseSocialChilling.jpg"
 
-const GALLERY = [omopchd0, omopchd1, omopchd2, omopchd3, omopchd4];
+const GALLERY = [BendreiStephenTabling, FirstPulseGroup, HaloHaloBar, IPOPulse, PulseSocialChilling];
 
 // Half-sun rays behind the icon, matching its Philippine-sun layout: big rays
 // straight up, on the diagonals and along the horizon, thin rays between.

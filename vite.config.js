@@ -22,8 +22,10 @@ function apiDevServer() {
 export default defineConfig(({ mode }) => {
   // Server-only secrets (no VITE_ prefix, so they never reach the bundle)
   const env = loadEnv(mode, process.cwd(), '');
-  process.env.CALENDAR_API_KEY ??= env.CALENDAR_API_KEY;
-  process.env.GOOGLE_CALENDAR_ID ??= env.GOOGLE_CALENDAR_ID;
+  // Skip unset keys: assigning undefined to process.env stores the string "undefined"
+  for (const key of ['CALENDAR_API_KEY', 'GOOGLE_CALENDAR_ID']) {
+    if (env[key] !== undefined) process.env[key] ??= env[key];
+  }
 
   return {
     plugins: [react(), tailwindcss(), apiDevServer()],

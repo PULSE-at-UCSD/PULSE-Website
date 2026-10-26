@@ -45,9 +45,10 @@ export default function EventPopup({ event, anchor, container, onClose }) {
         return () => window.removeEventListener('resize', place);
     }, [anchor, container]);
 
-    // Clicks on the anchor are left to its own handler, so clicking it again toggles
+    // Clicks on the anchor are left to its own handler, so clicking it again toggles.
+    // Escape still closes while the anchor has focus (it does right after clicking it).
     const dismiss = useCallback((e) => {
-        if (anchor.contains(e.target)) return;
+        if (e.type === 'mousedown' && anchor.contains(e.target)) return;
         if (e.type === 'keydown') anchor.focus();
         onClose();
     }, [anchor, onClose]);

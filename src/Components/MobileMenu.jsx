@@ -28,17 +28,18 @@ export default function MobileMenu({aboutPages = [], aboutLinks = [], joinUrl = 
                 <span className={`${barStyle} ${isOpen ? 'bottom-1/2 translate-y-1/2 -rotate-45' : 'bottom-0'}`}></span>
             </button>
 
-            {/* Positioned against the nav bar, so it spans the nav's full width */}
+            {/* Positioned against the nav bar, so it spans the nav's full width.
+                invisible keeps the closed menu's links out of the tab order */}
             <div className={`absolute inset-x-0 top-full mt-3 py-2 rounded-xl bg-white/70 backdrop-blur-md border-1 border-pulseOrange/30 shadow-lg
                             transition-all duration-200 ease-out
-                            ${isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2 pointer-events-none'}`}>
+                            ${isOpen ? 'opacity-100 translate-y-0' : 'invisible opacity-0 -translate-y-2 pointer-events-none'}`}>
                 <Link to="/" onClick={close} className={linkStyle}>Home</Link>
 
-                <button type="button" onClick={() => setAboutOpen((prev) => !prev)}
+                <button type="button" aria-expanded={aboutOpen} onClick={() => setAboutOpen((prev) => !prev)}
                     className={`${linkStyle} w-full text-left cursor-pointer ${aboutOpen ? 'text-pulseOrange' : ''}`}>
                     About
                 </button>
-                <div className={`grid transition-all duration-200 ease-out ${aboutOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}>
+                <div className={`grid transition-all duration-200 ease-out ${aboutOpen ? 'grid-rows-[1fr]' : 'invisible grid-rows-[0fr]'}`}>
                     <div className='overflow-hidden pl-4'>
                         {aboutPages.map((page, index) =>
                             <Link key={aboutLinks[index]} to={aboutLinks[index]} onClick={close} className={linkStyle}>{page}</Link>
@@ -48,7 +49,7 @@ export default function MobileMenu({aboutPages = [], aboutLinks = [], joinUrl = 
 
                 <Link to="/events" onClick={close} className={linkStyle}>Events</Link>
 
-                <div className='px-5 pt-2 pb-1'>
+                <div className='hidden px-5 pt-2 pb-1'>
                     <button type="button" onClick={() => { window.open(joinUrl); close(); }}
                         className="w-full text-xl rounded-lg bg-pulseYellow py-1 text-pulseOrange cursor-pointer hover:bg-amber-200 hover:text-orange-400 transition-colors duration-200">
                         Join

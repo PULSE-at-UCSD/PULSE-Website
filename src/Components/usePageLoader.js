@@ -8,6 +8,11 @@ const SHOW_DELAY_MS = 200;
 // Never keep the user stuck behind the loader on a slow or broken asset
 const MAX_WAIT_MS = 6000;
 
+function isInViewport(el) {
+    const rect = el.getBoundingClientRect();
+    return rect.bottom > 0 && rect.top < window.innerHeight && rect.right > 0 && rect.left < window.innerWidth;
+}
+
 // Shows the #page-loader overlay (in index.html) until the current page's images are loaded
 export default function usePageLoader() {
     const { pathname } = useLocation();
@@ -17,7 +22,9 @@ export default function usePageLoader() {
         if (!loader) return;
 
         let cancelled = false;
-        const pending = [...document.querySelectorAll('#root img')].filter((img) => !img.complete);
+        // Off-screen lazy images don't load until scrolled to, so waiting on them would keep the loader up
+        const pending = [...document.querySelectorAll('#root img')]
+            .filter((img) => !img.complete && (img.loading !== 'lazy' || isInViewport(img)));
         const imagesLoaded = pending.map((img) => new Promise((resolve) => {
             img.addEventListener('load', resolve, { once: true });
             img.addEventListener('error', resolve, { once: true });

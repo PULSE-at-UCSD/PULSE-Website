@@ -1,16 +1,45 @@
-# React + Vite
+# PULSE Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The website for PULSE at UC San Diego. Built with React, Vite, and Tailwind CSS, and deployed on Vercel.
 
-Currently, two official plugins are available:
+## Getting started
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Requires Node.js 20.19 or newer (needed by Vite 8).
 
-## React Compiler
+```bash
+npm install
+npm run dev
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+The site runs at http://localhost:5173.
 
-## Expanding the ESLint configuration
+### Environment variables
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+The events calendar pulls from Google Calendar. Create a `.env` file in the project root:
+
+```
+CALENDAR_API_KEY=your-google-api-key
+GOOGLE_CALENDAR_ID=your-calendar-id
+```
+
+These stay server-side and are never sent to the browser. Without them, the rest of the site works but the calendar won't load events. On Vercel, set the same variables in the project settings.
+
+## Scripts
+
+| Command           | Description                        |
+| ----------------- | ---------------------------------- |
+| `npm run dev`     | Start the dev server               |
+| `npm run build`   | Build for production into `dist/`  |
+| `npm run preview` | Preview the production build       |
+| `npm run lint`    | Run ESLint                         |
+
+## Project structure
+
+```
+api/              Vercel serverless function (Google Calendar proxy)
+public/           Static files (favicon, icons)
+src/
+  Pages/          One component per page (Home, Mission, Events, Board, 404)
+  Components/     Shared UI pieces and hooks
+  Assets/         Images
+```
